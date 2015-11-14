@@ -1,0 +1,23 @@
+{
+  "name": "Gulp-env",
+  "version": "1.0.0",	
+  "description": "Gulp environment tempate",
+  "authors": [
+    "Andrey Lamakin"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/lomegg/gulp-env",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "normalize.css": "*",
+    "jquery": "2.*"
+  }
+}
