@@ -21,6 +21,7 @@ var path = {
     build: { //Тут мы укажем куда складывать готовые после сборки файлы
         html: 'build/',
         js: 'build/js/',
+        coffee: 'src/js/coffee/tmp/',
         css: 'build/css/',
         img: 'build/img/',
         fonts: 'build/fonts/'
@@ -28,7 +29,7 @@ var path = {
     src: { //Пути откуда брать исходники
         html: 'src/*.html', //Синтаксис src/*.html говорит gulp что мы хотим взять все файлы с расширением .html
         js: 'src/js/main.js',//В стилях и скриптах нам понадобятся только main файлы
-        coffee: 'src/coffee/**/*.coffee',
+        coffee: 'src/js/coffee/**/*.coffee',
         style: 'src/style/main.scss',
         img: 'src/img/**/*.*', //Синтаксис img/**/*.* означает - взять все файлы всех расширений из папки и из вложенных каталогов
         fonts: 'src/fonts/**/*.*'
@@ -37,7 +38,7 @@ var path = {
         html: 'src/**/*.html',
         js: 'src/js/**/*.js',
         style: 'src/style/**/*.scss',
-        coffee: 'src/coffee/**/*.coffee',
+        coffee: 'src/js/coffee/**/*.coffee',
         img: 'src/img/**/*.*',
         fonts: 'src/fonts/**/*.*'
     },
@@ -75,7 +76,7 @@ gulp.task('js:build', function () {
 gulp.task('coffee:build', function() {
     gulp.src(path.src.coffee)
         .pipe(coffee({bare: true}).on('error', gutil.log))
-        .pipe(gulp.dest('./src/js/coffee-built/'));
+        .pipe(gulp.dest(path.build.coffee));
 });
 
 gulp.task('style:build', function () {

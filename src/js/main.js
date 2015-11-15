@@ -11,4 +11,4 @@
  */
 //= partials/scripts.js
 //= angular/
-//= coffee-built/
+//= coffee/tmp/
