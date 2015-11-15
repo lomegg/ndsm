@@ -1,12 +1,9 @@
 # Gulp-env
-Gulp environment for personal use.
+Gulp template for personal use.
 
+Usage:
 ```sh
 npm install
-```
-```sh
 bower install
-```
-```sh
 gulp
 ```
