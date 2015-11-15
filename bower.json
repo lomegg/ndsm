@@ -1,12 +1,12 @@
 {
-  "name": "Gulp-env",
+  "name": "NDSM",
   "version": "1.0.0",	
-  "description": "Gulp environment tempate",
+  "description": "Web studio site",
   "authors": [
     "Andrey Lamakin"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/lomegg/gulp-env",
+  "homepage": "https://github.com/lomegg/ndsm",
   "moduleType": [],
   "private": true,
   "ignore": [
