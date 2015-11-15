@@ -3,7 +3,9 @@
 var gulp = require('gulp'),
     watch = require('gulp-watch'),
     prefixer = require('gulp-autoprefixer'),
+    gutil = require('gulp-util'),
     uglify = require('gulp-uglify'),
+    coffee = require('gulp-coffee'),
     sass = require('gulp-sass'),
     sourcemaps = require('gulp-sourcemaps'),
     rigger = require('gulp-rigger'),
@@ -26,6 +28,7 @@ var path = {
     src: { //Пути откуда брать исходники
         html: 'src/*.html', //Синтаксис src/*.html говорит gulp что мы хотим взять все файлы с расширением .html
         js: 'src/js/main.js',//В стилях и скриптах нам понадобятся только main файлы
+        coffee: 'src/coffee/**/*.coffee',
         style: 'src/style/main.scss',
         img: 'src/img/**/*.*', //Синтаксис img/**/*.* означает - взять все файлы всех расширений из папки и из вложенных каталогов
         fonts: 'src/fonts/**/*.*'
@@ -34,6 +37,7 @@ var path = {
         html: 'src/**/*.html',
         js: 'src/js/**/*.js',
         style: 'src/style/**/*.scss',
+        coffee: 'src/coffee/**/*.coffee',
         img: 'src/img/**/*.*',
         fonts: 'src/fonts/**/*.*'
     },
@@ -68,6 +72,12 @@ gulp.task('js:build', function () {
         .pipe(reload({stream: true})); //И перезагрузим сервер
 });
 
+gulp.task('coffee:build', function() {
+    gulp.src(path.src.coffee)
+        .pipe(coffee({bare: true}).on('error', gutil.log))
+        .pipe(gulp.dest('./src/js/coffee-built/'));
+});
+
 gulp.task('style:build', function () {
     gulp.src(path.src.style) //Выберем наш main.scss
         .pipe(sourcemaps.init()) //То же самое что и с js
@@ -98,6 +108,7 @@ gulp.task('fonts:build', function() {
 
 gulp.task('build', [
     'html:build',
+    'coffee:build',
     'js:build',
     'style:build',
     'fonts:build',
@@ -110,6 +121,9 @@ gulp.task('watch', function(){
     }).on('error', errorHandler);
     watch([path.watch.style], function(event, cb) {
         gulp.start('style:build');
+    }).on('error', errorHandler);
+    watch([path.watch.coffee], function(event, cb) {
+        gulp.start('coffee:build');
     }).on('error', errorHandler);
     watch([path.watch.js], function(event, cb) {
         gulp.start('js:build');
@@ -134,9 +148,6 @@ gulp.task('clearCache', function() {
     // Still pass the files to clear cache for
     gulp.src('./lib/*.js')
         .pipe(cache.clear());
-
-    // Or, just call this for everything
-    //cache.clearAll();
 });
 
 gulp.task('default', ['build', 'webserver', 'watch']);
