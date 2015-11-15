@@ -1,0 +1,38 @@
+.header {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  background: transparent;
+  width: 100%;
+  z-index: 1040;
+  ul.nav {
+    text-align: center;
+    //box-shadow: 0 0 5px 10px #fff
+    background: #f1f1f1;
+    padding: 10px 0 20px 0;
+    li {
+      display: inline-block;
+      &.active a {
+        color: #69b2c4;
+      }
+      a {
+        color: black;
+        font-weight: 300;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: all 0.1s ease-in;
+        font-size: 16px;
+        &:hover {
+          color: #bdc3c7;
+          background: transparent;
+        }
+        &:hover, &:active, &:focus {
+          background: transparent;
+        }
+      }
+      ul {
+        display: none;
+      }
+    }
+  }
+}

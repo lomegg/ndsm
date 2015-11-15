@@ -2,12 +2,13 @@
 * Third Party
 */
 @import "../../bower_components/normalize.css/normalize.css";
-
+@import "vendor/colorbox.css";
+@import "vendor/jquery.fullPage.css";
 /*
 * Custom
 */
 @import "partials/app.scss";
 @import "bootstrap/bootstrap.css";
 @import "bootstrap/bootstrap-theme.css";
-@import "overrides.scss";
+@import "partials/bootstrap_overrides.scss";
 @import "style.scss";

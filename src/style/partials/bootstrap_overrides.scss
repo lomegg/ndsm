@@ -1,0 +1,184 @@
+html {
+  overflow-x: hidden;
+}
+
+// general styles
+body {
+  &.modal-open {
+    padding-right: 0 !important;
+  }
+  //font-family: lato, sans-serif
+}
+
+a {
+  //color: #80CEF4
+  text-decoration: underline;
+  &:hover, &:focus, &:active {
+    //color: #006EDF
+    outline: none;
+  }
+}
+
+button {
+  &:hover, &:focus, &:active {
+    outline: none;
+  }
+}
+
+//hacks
+.spacer-1 {
+  height: 1px;
+}
+
+.spacer-20 {
+  height: 20px;
+}
+
+.spacer-40 {
+  height: 40px;
+}
+
+.spacer-60 {
+  height: 40px;
+}
+
+.col-paddingless {
+  padding-left: 0;
+  padding-right: 0;
+  @media (max-width: 767px) {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+.bikes-desc {
+  &:first-child {
+    @media (min-width: 768px) {
+      padding-left: 0;
+      padding-right: 30px;
+    }
+  }
+  &:last-child {
+    @media (min-width: 768px) {
+      padding-left: 30px;
+      padding-right: 0;
+    }
+  }
+}
+
+.no-deco {
+  text-decoration: none;
+  &:hover, &:active, &:focus {
+    text-decoration: none;
+  }
+}
+
+.strong {
+  font-weight: 700;
+}
+
+// margin & padding
+.margin-bottom-20 {
+  margin-bottom: 20px;
+}
+
+.no-margin-bottom {
+  margin-bottom: 0;
+}
+
+// strange cols
+.row {
+  .wider-md-4 {
+    &:first-child {
+      padding-right: 20px;
+      padding-left: 0px;
+    }
+    &:last-child {
+      padding-right: 0px;
+      padding-left: 20px;
+    }
+  }
+  .wider-md-8 {
+    &:last-child {
+      padding-right: 0px;
+      padding-left: 10px;
+    }
+  }
+  .wider-md-4, .wider-md-8 {
+    &:first-child, &:last-child {
+      @media (max-width: 767px) {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+    }
+  }
+}
+
+//colors
+.white {
+  background-color: white;
+}
+
+//z-index
+.z5 {
+  z-index: 5;
+}
+
+//placeholders
+//input, textarea
+// &::-webkit-input-placeholder
+//   color: #80CEF4
+// &:-moz-placeholder
+//   color: #80CEF4
+// &::-moz-placeholder
+//   color: #80CEF4
+// &:-ms-input-placeholder
+//   color: #80CEF4
+// &:hover::-webkit-input-placeholder
+//   color: #023E7C
+// &:active::-webkit-input-placeholder
+//   color: #023E7C
+// &:focus::-webkit-input-placeholder
+//   color: #023E7C
+// &:hover:-moz-placeholder
+//   color: #023E7C
+// &:active:-moz-placeholder
+//   color: #023E7C
+// &:focus:-moz-placeholder
+//   color: #023E7C
+// &:hover::-moz-placeholder
+//   color: #023E7C
+// &:active::-moz-placeholder
+//   color: #023E7C
+// &:focus::-moz-placeholder
+//   color: #023E7C
+//
+// &:hover:-ms-input-placeholder
+// &:active:-ms-input-placeholder
+// &:focus:-ms-input-placeholder
+
+// alerts
+//.alert
+// border: 1px solid #80CEF4
+// border-radius: 0
+// font-family: lato, sans-serif
+// font-size: 14px
+// background: white
+// color: #023E7C
+// button
+//   span
+//     color: #023E7C
+
+//bootstrap hiders
+.hide-sr {
+  @media (max-width: 767px) {
+    display: none;
+  }
+}
+
+.show-sr {
+  display: none;
+  @media (max-width: 767px) {
+    display: block;
+  }
+}
