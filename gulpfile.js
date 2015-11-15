@@ -24,7 +24,8 @@ var path = {
         coffee: 'src/js/coffee/tmp/',
         css: 'build/css/',
         img: 'build/img/',
-        fonts: 'build/fonts/'
+        fonts: 'build/fonts/',
+        json: 'build/json/'
     },
     src: { //Пути откуда брать исходники
         html: 'src/*.html', //Синтаксис src/*.html говорит gulp что мы хотим взять все файлы с расширением .html
@@ -32,7 +33,8 @@ var path = {
         coffee: 'src/js/coffee/**/*.coffee',
         style: 'src/style/main.scss',
         img: 'src/img/**/*.*', //Синтаксис img/**/*.* означает - взять все файлы всех расширений из папки и из вложенных каталогов
-        fonts: 'src/fonts/**/*.*'
+        fonts: 'src/fonts/**/*.*',
+        json: 'src/json/*.*'
     },
     watch: { //Тут мы укажем, за изменением каких файлов мы хотим наблюдать
         html: 'src/**/*.html',
@@ -40,7 +42,8 @@ var path = {
         style: 'src/style/**/*.scss',
         coffee: 'src/js/coffee/**/*.coffee',
         img: 'src/img/**/*.*',
-        fonts: 'src/fonts/**/*.*'
+        fonts: 'src/fonts/**/*.*',
+        json: 'src/json/*.*'
     },
     clean: './build'
 };
@@ -109,13 +112,20 @@ gulp.task('fonts:build', function() {
         .pipe(gulp.dest(path.build.fonts))
 });
 
+gulp.task('json:build', function() {
+    gulp.src(path.src.json)
+        .pipe(gulp.dest(path.build.json))
+});
+
+
 gulp.task('build', [
     'html:build',
     'coffee:build',
     'js:build',
     'style:build',
     'fonts:build',
-    'image:build'
+    'image:build',
+    'json:build'
 ]);
 
 gulp.task('watch', function(){
@@ -136,6 +146,9 @@ gulp.task('watch', function(){
     }).on('error', gutil.log);
     watch([path.watch.fonts], function(event, cb) {
         gulp.start('fonts:build');
+    }).on('error', gutil.log);
+    watch([path.watch.json], function(event, cb) {
+        gulp.start('json:build');
     }).on('error', gutil.log);
 });
 
