@@ -71,18 +71,20 @@ gulp.task('js:build', function () {
         .pipe(sourcemaps.write()) //Пропишем карты
         .pipe(gulp.dest(path.build.js)) //Выплюнем готовый файл в build
         .pipe(reload({stream: true})); //И перезагрузим сервер
+    //printTimestamp('Js build initiated');
 });
 
 gulp.task('coffee:build', function() {
     gulp.src(path.src.coffee)
         .pipe(coffee({bare: true}).on('error', gutil.log))
         .pipe(gulp.dest(path.build.coffee));
+    //printTimestamp('Coffee build initiated');
 });
 
 gulp.task('style:build', function () {
     gulp.src(path.src.style) //Выберем наш main.scss
         .pipe(sourcemaps.init()) //То же самое что и с js
-        .pipe(sass()).on('error', errorHandler) //Скомпилируем
+        .pipe(sass()).on('error', gutil.log) //Скомпилируем
         .pipe(prefixer()) //Добавим вендорные префиксы
         .pipe(cssmin()) //Сожмем
         .pipe(sourcemaps.write())
@@ -119,22 +121,22 @@ gulp.task('build', [
 gulp.task('watch', function(){
     watch([path.watch.html], function(event, cb) {
         gulp.start('html:build');
-    }).on('error', errorHandler);
+    }).on('error', gutil.log);
     watch([path.watch.style], function(event, cb) {
         gulp.start('style:build');
-    }).on('error', errorHandler);
+    }).on('error', gutil.log);
     watch([path.watch.coffee], function(event, cb) {
         gulp.start('coffee:build');
-    }).on('error', errorHandler);
+    }).on('error', gutil.log);
     watch([path.watch.js], function(event, cb) {
         gulp.start('js:build');
-    }).on('error', errorHandler);
+    }).on('error', gutil.log);
     watch([path.watch.img], function(event, cb) {
         gulp.start('image:build');
-    }).on('error', errorHandler);
+    }).on('error', gutil.log);
     watch([path.watch.fonts], function(event, cb) {
         gulp.start('fonts:build');
-    }).on('error', errorHandler);
+    }).on('error', gutil.log);
 });
 
 gulp.task('webserver', function () {
@@ -153,8 +155,7 @@ gulp.task('clearCache', function() {
 
 gulp.task('default', ['build', 'webserver', 'watch']);
 
-// Handle the error
-function errorHandler (error) {
-    console.log(error.toString());
-    this.emit('end');
+//Handle timestamps
+function printTimestamp(msg) {
+    console.log(msg + " " + new Date().toUTCString());
 }
