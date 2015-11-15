@@ -1,0 +1,9 @@
+# IDE cache
+.idea/
+
+#dependencies
+bower_components/
+node_modules/
+
+#built files
+build/
