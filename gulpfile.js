@@ -3,7 +3,9 @@
 var gulp = require('gulp'),
     watch = require('gulp-watch'),
     prefixer = require('gulp-autoprefixer'),
+    gutil = require('gulp-util'),
     uglify = require('gulp-uglify'),
+    coffee = require('gulp-coffee'),
     sass = require('gulp-sass'),
     sourcemaps = require('gulp-sourcemaps'),
     rigger = require('gulp-rigger'),
@@ -19,6 +21,7 @@ var path = {
     build: { //Тут мы укажем куда складывать готовые после сборки файлы
         html: 'build/',
         js: 'build/js/',
+        coffee: 'src/js/coffee/tmp/',
         css: 'build/css/',
         img: 'build/img/',
         fonts: 'build/fonts/'
@@ -26,6 +29,7 @@ var path = {
     src: { //Пути откуда брать исходники
         html: 'src/*.html', //Синтаксис src/*.html говорит gulp что мы хотим взять все файлы с расширением .html
         js: 'src/js/main.js',//В стилях и скриптах нам понадобятся только main файлы
+        coffee: 'src/js/coffee/**/*.coffee',
         style: 'src/style/main.scss',
         img: 'src/img/**/*.*', //Синтаксис img/**/*.* означает - взять все файлы всех расширений из папки и из вложенных каталогов
         fonts: 'src/fonts/**/*.*'
@@ -34,6 +38,7 @@ var path = {
         html: 'src/**/*.html',
         js: 'src/js/**/*.js',
         style: 'src/style/**/*.scss',
+        coffee: 'src/js/coffee/**/*.coffee',
         img: 'src/img/**/*.*',
         fonts: 'src/fonts/**/*.*'
     },
@@ -66,12 +71,20 @@ gulp.task('js:build', function () {
         .pipe(sourcemaps.write()) //Пропишем карты
         .pipe(gulp.dest(path.build.js)) //Выплюнем готовый файл в build
         .pipe(reload({stream: true})); //И перезагрузим сервер
+    //printTimestamp('Js build initiated');
+});
+
+gulp.task('coffee:build', function() {
+    gulp.src(path.src.coffee)
+        .pipe(coffee({bare: true}).on('error', gutil.log))
+        .pipe(gulp.dest(path.build.coffee));
+    //printTimestamp('Coffee build initiated');
 });
 
 gulp.task('style:build', function () {
     gulp.src(path.src.style) //Выберем наш main.scss
         .pipe(sourcemaps.init()) //То же самое что и с js
-        .pipe(sass()).on('error', errorHandler) //Скомпилируем
+        .pipe(sass()).on('error', gutil.log) //Скомпилируем
         .pipe(prefixer()) //Добавим вендорные префиксы
         .pipe(cssmin()) //Сожмем
         .pipe(sourcemaps.write())
@@ -98,6 +111,7 @@ gulp.task('fonts:build', function() {
 
 gulp.task('build', [
     'html:build',
+    'coffee:build',
     'js:build',
     'style:build',
     'fonts:build',
@@ -107,19 +121,22 @@ gulp.task('build', [
 gulp.task('watch', function(){
     watch([path.watch.html], function(event, cb) {
         gulp.start('html:build');
-    }).on('error', errorHandler);
+    }).on('error', gutil.log);
     watch([path.watch.style], function(event, cb) {
         gulp.start('style:build');
-    }).on('error', errorHandler);
+    }).on('error', gutil.log);
+    watch([path.watch.coffee], function(event, cb) {
+        gulp.start('coffee:build');
+    }).on('error', gutil.log);
     watch([path.watch.js], function(event, cb) {
         gulp.start('js:build');
-    }).on('error', errorHandler);
+    }).on('error', gutil.log);
     watch([path.watch.img], function(event, cb) {
         gulp.start('image:build');
-    }).on('error', errorHandler);
+    }).on('error', gutil.log);
     watch([path.watch.fonts], function(event, cb) {
         gulp.start('fonts:build');
-    }).on('error', errorHandler);
+    }).on('error', gutil.log);
 });
 
 gulp.task('webserver', function () {
@@ -134,15 +151,11 @@ gulp.task('clearCache', function() {
     // Still pass the files to clear cache for
     gulp.src('./lib/*.js')
         .pipe(cache.clear());
-
-    // Or, just call this for everything
-    //cache.clearAll();
 });
 
 gulp.task('default', ['build', 'webserver', 'watch']);
 
-// Handle the error
-function errorHandler (error) {
-    console.log(error.toString());
-    this.emit('end');
+//Handle timestamps
+function printTimestamp(msg) {
+    console.log(msg + " " + new Date().toUTCString());
 }

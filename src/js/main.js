@@ -10,3 +10,5 @@
  * Custom
  */
 //= partials/scripts.js
+//= angular/
+//= coffee/tmp/
