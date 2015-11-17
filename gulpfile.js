@@ -128,6 +128,15 @@ gulp.task('build', [
     'json:build'
 ]);
 
+gulp.task('buildDev', [
+    'html:build',
+    'coffee:build',
+    'js:build',
+    'style:build',
+    'fonts:build',
+    'json:build'
+]);
+
 gulp.task('watch', function(){
     watch([path.watch.html], function(event, cb) {
         gulp.start('html:build');
@@ -166,7 +175,7 @@ gulp.task('clearCache', function() {
         .pipe(cache.clear());
 });
 
-gulp.task('default', ['build', 'webserver', 'watch']);
+gulp.task('default', ['buildDev', 'webserver', 'watch']);
 
 //Handle timestamps
 function printTimestamp(msg) {
