@@ -4,11 +4,12 @@
 @import "../../bower_components/normalize.css/normalize.css";
 @import "vendor/colorbox.css";
 @import "vendor/jquery.fullPage.css";
+@import "bootstrap/bootstrap.css";
+@import "bootstrap/bootstrap-theme.css";
 /*
 * Custom
 */
 @import "partials/app.scss";
-@import "bootstrap/bootstrap.css";
-@import "bootstrap/bootstrap-theme.css";
+@import "partials/navbar_footer.scss";
 @import "partials/bootstrap_overrides.scss";
 @import "style.scss";
