@@ -1,0 +1,5 @@
+.visible-520{
+  @include apply-to(greater-than, 521px) {
+    display: none;
+  }
+}

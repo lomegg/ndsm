@@ -9,6 +9,9 @@
 /*
 * Custom
 */
+@import "variables.scss";
+@import "mixin.scss";
+@import "media.scss";
 @import "partials/app.scss";
 @import "partials/navbar_footer.scss";
 @import "partials/bootstrap_overrides.scss";
