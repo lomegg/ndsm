@@ -224,33 +224,43 @@ body {
 
 #servizi {
 
-  @include apply-to(greater-than, $screen-md) {
-    .col-sm-4:nth-child(-n+3) {
-      margin-bottom: 50px;
-    }
-    .col-sm-4:nth-child(1), .col-sm-4:nth-child(4) {
-      .servizi-block {
-        padding: 0 70px 0 35px;
-      }
-    }
-    .col-sm-4:nth-child(3), .col-sm-4:nth-child(6) {
-      .servizi-block {
-        padding: 0 35px 0 70px;
-      }
+  //blocks of top 3 rows
+  .col-sm-4:nth-child(-n+3) .servizi-block {
+    margin-bottom: 50px;
+    @include apply-to(less-than, $screen-md){
+      margin-bottom: 30px;
     }
   }
-  @include apply-to(less-than, $screen-md) {
-    .col-sm-4:nth-child(-n+3) {
-      margin-bottom: 30px;
+
+  //2 left blocks
+  .col-sm-4:nth-child(3n+1) .servizi-block{
+    @include apply-to(greater-than, $screen-md) {
+      padding: 0 70px 0 35px;
+    }
+  }
+
+  //2 middle blocks
+
+  .col-sm-4:nth-child(3n+2) .servizi-block{
+    @include apply-to(greater-than, $screen-md) {
+      padding: 0 65px;
+    }
+  }
+
+  //2 right blocks
+  .col-sm-4:nth-child(3n) .servizi-block{
+    @include apply-to(greater-than, $screen-md) {
+      padding: 0 35px 0 70px;
     }
   }
 
 
   .servizi-block {
-    padding: 0 65px;
-
     @include apply-to(less-than, $screen-md) {
       padding: 0 0 0 60px;
+    }
+    @include apply-to(less-than, $screen-sm){
+      margin-bottom: 30px;
     }
 
     .servizi-block-inner {
@@ -278,9 +288,38 @@ body {
         }
       }
     }
+    @include apply-to(less-than, $screen-sm) {
+      .icon {
+        position: absolute;
+        left: -60px;
+        top: -5px;
+        width: 50px;
+        height: auto;
+        text-align: center;
+
+        img {
+          position: relative;
+          bottom: auto;
+          right: auto;
+          max-width: 40px;
+          &.audio {
+            bottom: 5px;
+          }
+          &.web {
+            bottom: -3px;
+          }
+        }
+      }
+      p {
+        margin: 0px 0 5px;
+      }
+    }
     hr {
       margin: 20px 0 25px;
       border-top: 1px solid #bdc3c7;
+      @include apply-to(less-than, $screen-sm){
+        margin: 5px 0 10px;
+      }
     }
     p {
       font-size: 14px;
