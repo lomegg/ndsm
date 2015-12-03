@@ -114,6 +114,9 @@ body {
       transition: all 0.1s ease-in;
       font-size: 17px;
       text-align: right;
+      @include apply-to(less-than, $screen-sm){
+        text-align: center;
+      }
     }
     p {
       font-weight: 300;
@@ -121,6 +124,10 @@ body {
       font-size: 17px;
       text-align: right;
       margin: 0;
+      @include apply-to(less-than, $screen-sm){
+        text-align: center;
+      }
+
       &.iva {
         margin: 25px 0;
       }
@@ -141,6 +148,12 @@ body {
       bottom: 0;
       right: 0;
       text-align: right;
+      @include apply-to(less-than, $screen-sm){
+        right: auto;
+        bottom: 20px;
+        left: 50%;
+        margin-left: -145px;
+      }
       .icon {
         display: inline-block;
         margin: 0 0 0 20px;
@@ -215,6 +228,9 @@ body {
     height: 380px;
     width: 444px;
     z-index: 1;
+    @include apply-to(less-than, $screen-sm){
+      margin: 0 auto 40px;
+    }
     iframe {
       z-index: 1;
       margin-top: -200px;
