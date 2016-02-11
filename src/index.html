@@ -11,6 +11,9 @@
 
     <!--  Type loading  -->
     <link rel="stylesheet" href="https://use.typekit.net/c/686dde/1w;proxima-nova,1,gFw:T:n3,gGK:T:n4,gGh:T:n6,gHB:T:n7/l?3bb2a6e53c9684ffdc9a9bf61b5b2a628b788d2543d3caa13a8703219dd72ac9346baab341dad00ca6762471da8d9ccf6af5d337913c65bcaab03929c7f232d17eb1ba83dd95f07d3f015350abdcb077bb9179338de6243dd80e69f771ed8c5533f2f15a57" media="all">
+    <!--<link href="https://file.myfontastic.com/n6vo44Re5QaWo8oCKShBs7/icons.css" rel="stylesheet">-->
+    <link href="https://file.myfontastic.com/n6vo44Re5QaWo8oCKShBs7/icons.css" rel="stylesheet">
+
     <script>
         try{Typekit.load();}catch(e){}
     </script>
@@ -18,7 +21,9 @@
     <link href="css/main.css" rel="stylesheet">
 </head>
 
-<body>
+<base href="/">
+
+<body ng-app="ndsm">
     //= template/header.html
 
 
@@ -46,6 +51,7 @@
                         <div class="icon">
                             <img alt="Underskin Media - Design in Alghero" src="img/icons/design.png">
                         </div>
+                        <div class="clearfix visible-520"></div>
                         <div class="icon">
                             <img alt="Underskin Media - Websolution in Alghero" src="img/icons/websolution.png">
                         </div>
@@ -123,7 +129,7 @@
                                 <div class="servizi-block-inner">
                                     <h5>web design</h5>
                                     <div class="icon">
-                                        <img src="img/icons/grey/web design_grey.png">
+                                        <img class="web" src="img/icons/grey/web design_grey.png">
                                     </div>
                                     <hr>
                                     <p>
@@ -180,19 +186,10 @@
         <div class="section page page-fit" id="portfolio">
             <div class="page-content">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h1>
-                                <strong>PORTFOLIO</strong>
-                            </h1>
-                        </div>
-                        <div class="col-lg-12">
-                            <li><a href="/portfolio/design" data-remote="true">Design</a></li>
-                            <li><a href="/portfolio/photo" data-remote="true">Fotografia</a></li>
-                            <li><a href="/portfolio/web" data-remote="true">Web</a></li>
-                            <li><a href="/portfolio/video" data-remote="true">Video</a></li>
-                        </div>
-                    </div>
+
+                    <div ng-view></div>
+
+
                 </div>
             </div>
         </div>
@@ -201,12 +198,12 @@
             <div class="page-content">
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-6 col-lg-5 col-lg-offset-1">
+                        <div class="col-xs-12 col-sm-6 col-lg-5 col-lg-offset-1">
                             <div class="quadrat" id="map">
                                 <iframe frameborder="0" height="800" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24250.459355184335!2d8.328648000000001!3d40.55688800000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12dcf1c02f68a343%3A0xe6da71ac53cca5d3!2sVia+Foradada%2C+13%2C+07041+Alghero+SS!5e0!3m2!1sru!2sit!4v1433239628342" style="border:0" width="540"></iframe>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-5">
+                        <div class="col-xs-12 col-sm-6 col-lg-5">
                             <div class="quadrat" id="contacts">
                                 <h4>Underskin Media Studio</h4>
                                 <p>via Foradada, 13</p>
@@ -222,7 +219,16 @@
                                     </strong>
                                 </p>
                                 <div class="social">
-                                    <div class="icon">
+                                    <a href="http://www.facebook.com/underskinmedia" class="socicon-facebook font-icon" alt="Underskin Media Facebook Page"> </a>
+                                    <a href="http://twitter.com/underskinmedia" class="socicon-twitter font-icon" alt="Underskin Media Twitter Account"></a>
+                                    <a href="https://plus.google.com/+Underskinmedia" class="socicon-googleplus font-icon" alt="Underskin Media Google + Account"></a>
+                                    <a href="#" class="socicon-youtube font-icon" alt="Underskin Media Youtube Channel"></a>
+                                    <a href="#" class="socicon-soundcloud font-icon" alt="Underskin Media SoundCloud"></a>
+
+
+
+
+                                    <!--<div class="icon">
                                         <a href="http://www.facebook.com/underskinmedia">
                                             <img src="img/social/facebook.png">
                                             <img class="back" src="img/social/facebook_over.png">
@@ -235,9 +241,8 @@
                                         </a>
                                     </div>
                                     <div class="icon">
-                                        <a href="http://twitter.com/underskinmedia">
-                                            <img src="img/social/twitter.png">
-                                            <img class="back" src="img/social/twitter_over.png">
+                                        <a href="http://twitter.com/underskinmedia" class="socicon-twitter font-icon">
+
                                         </a>
                                     </div>
                                     <div class="icon">
@@ -251,7 +256,7 @@
                                             <img src="img/social/soundcloud.png">
                                             <img class="back" src="img/social/soundcloud_over.png">
                                         </a>
-                                    </div>
+                                    </div>-->
                                 </div>
                             </div>
                         </div>

@@ -143,7 +143,8 @@ body {
       }
     }
     .social {
-      display: block;
+      //display: block;
+      display: inline-flex;
       position: absolute;
       bottom: 0;
       right: 0;
@@ -154,6 +155,45 @@ body {
         left: 50%;
         margin-left: -145px;
       }
+      .font-icon{
+        color: $blackcolor;
+        display: inline-block;
+        margin: 0 0 0 20px;
+        position: relative;
+        font-size: 35px;
+        text-decoration: none;
+        -webkit-transition: all 0.2s ease-in-out;
+        -moz-transition: all 0.2s ease-in-out;
+        -ms-transition: all 0.2s ease-in-out;
+        -o-transition: all 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out;
+        &:hover{
+          color: $bluecolor;
+          text-shadow: 2px 4px $greycolor;
+        }
+      }
+      .socicon-facebook{
+        font-size: 27px;
+        top: -3px;
+      }
+      .socicon-twitter{
+        font-size: 32px;
+        top: -5px;
+      }
+      .socicon-googleplus{
+        font-size: 38px;
+        top: -8px;
+      }
+      .socicon-youtube{
+        font-size: 38px;
+        top: -8px;
+      }
+      .socicon-soundcloud{
+        font-size: 63px;
+        top: -21px;
+      }
+
+
       .icon {
         display: inline-block;
         margin: 0 0 0 20px;
